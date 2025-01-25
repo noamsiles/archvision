@@ -1,0 +1,29 @@
+{
+  "name": "aliexpress-dropshipping",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "npm run clean && tsc",
+    "lint": "biome check --write .",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pandeltaA/aliexpress-dropshipping.git"
+  },
+  "author": "Noam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pandeltaA/aliexpress-dropshipping/issues"
+  },
+  "homepage": "https://github.com/pandeltaA/aliexpress-dropshipping#readme",
+  "description": "",
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/node": "^22.10.7",
+    "husky": "^9.1.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}

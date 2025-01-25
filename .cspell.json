@@ -1,0 +1,13 @@
+{
+	"version": "0.2",
+	"ignorePaths": [
+		"node_modules",
+		"dist",
+		"coverage"
+	],
+	"language": "en",
+	"noConfigSearch": true,
+	"words": [
+		"aliexpress"
+	]
+}
