@@ -8,6 +8,9 @@
 	"language": "en",
 	"noConfigSearch": true,
 	"words": [
-		"aliexpress"
+		"aliexpress",
+		"Fastify",
+		"openapi",
+		"pino"
 	]
 }
