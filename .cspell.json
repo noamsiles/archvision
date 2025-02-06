@@ -8,6 +8,10 @@
 	"language": "en",
 	"noConfigSearch": true,
 	"words": [
-		"aliexpress"
+		"aliexpress",
+		"Archvision",
+		"Fastify",
+		"openapi",
+		"pino"
 	]
 }
