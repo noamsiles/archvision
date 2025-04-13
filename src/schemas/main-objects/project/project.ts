@@ -18,7 +18,7 @@ const projectSchema = {
   schema: {
     body: projectBodySchema,
     response: {
-      200: z.string(),
+      201: z.string(),
     },
   },
 };
