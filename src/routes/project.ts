@@ -1,15 +1,15 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
-import projectSchema from "../schemas/main-objects/project/project";
+import { newProjectSchema, patchProjectSchema } from "../schemas/main-objects/project/project";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { Project } from "../types/project";
-import { addProject } from "../services/project/add-project";
+import { addProject, updateSingleProject } from "../services/project/basic-methods";
 
 const projectsRouts = (app: FastifyInstance) => {
   app
     .withTypeProvider<ZodTypeProvider>()
     .post(
       "/create/:username",
-      projectSchema,
+      newProjectSchema,
       async (request: FastifyRequest, response: FastifyReply) => {
         const username = request.params as string;
         const project = request.body as Project;
@@ -17,6 +17,21 @@ const projectsRouts = (app: FastifyInstance) => {
         await addProject(username, project);
 
         response.code(201).send({ message: "Project created successfully!" });
+      }
+    );
+
+    app
+    .withTypeProvider<ZodTypeProvider>()
+    .patch(
+      "/update/:username",
+      patchProjectSchema,
+      async (request: FastifyRequest, response: FastifyReply) => {
+        const username = request.params as string;
+        const update = request.body as Partial<Project> & { id: string };
+
+        await updateSingleProject(username, update);
+
+        response.code(200).send({ message: "Project updated successfully!" });
       }
     );
 };

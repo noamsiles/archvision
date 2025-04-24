@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { projectBodySchema } from "../schemas/main-objects/project/project";
+import { newProjectBodySchema } from "../schemas/main-objects/project/project";
 import documentAdds from "./document-adds";
 
-export type Project = z.infer<typeof projectBodySchema>;
+export type Project = z.infer<typeof newProjectBodySchema>;
 
 export const projectStatuses = {
   Completed: 'Completed',

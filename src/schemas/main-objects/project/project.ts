@@ -3,7 +3,7 @@ import { purposesListSchema } from "../../commons/purposes";
 import areaSchema from "./area";
 import { ObjectId } from "mongodb";
 
-export const projectBodySchema = z.object({
+export const newProjectBodySchema = z.object({
   cityId: z.string().refine((id) => ObjectId.isValid(id)),
   name: z.string(),
   manager: z.string(),
@@ -14,13 +14,27 @@ export const projectBodySchema = z.object({
   purpose: purposesListSchema,
 });
 
-const projectSchema = {
+export const newProjectSchema = {
   schema: {
-    body: projectBodySchema,
+    body: newProjectBodySchema,
     response: {
       201: z.string(),
     },
   },
 };
 
-export default projectSchema;
+const patchProjectBodySchema = z.object({
+  id: z.string().refine((id) => ObjectId.isValid(id)),
+  name: z.string().optional(),
+  manager: z.string().optional(),
+  coManager: z.string().optional(),
+})
+
+export const patchProjectSchema = {
+  schema: {
+    body: patchProjectBodySchema,
+    response: {
+      200: z.string(),
+    },
+  },
+};
