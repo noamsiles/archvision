@@ -1,7 +1,7 @@
 import config from "../config";
 import { Filter, ObjectId } from "mongodb";
 import { createCollectionOperations } from "../db/operations";
-import { Project, projectStatuses } from "../types/project";
+import { DBProject, Project, projectStatuses } from "../types/project";
 
 const { projectsCollectionName } = config
 
@@ -27,4 +27,13 @@ export const patchProjects = async (dbName: string, filter: Filter<Project>, upd
   const { updateMany } = createCollectionOperations<Project>(dbName, projectsCollectionName)
   
   await updateMany(filter, update)
+}
+
+export const removeProject = async (dbName: string, id: string, update: Partial<DBProject>) => {
+  const { updateOne } = createCollectionOperations<DBProject>(dbName, projectsCollectionName)
+  
+  const projectId = ObjectId.createFromBase64(id)
+  const filter = { _id: projectId}
+  
+  await updateOne(filter, update)
 }

@@ -23,6 +23,15 @@ export const newProjectSchema = {
   },
 };
 
+const getPatchSchema = <T extends z.ZodRawShape>(bodySchema: z.ZodObject<T> | z.ZodEffects<z.ZodString>) => ({
+  schema: {
+    body: bodySchema,
+    response: {
+      200: z.string(),
+    },
+  },
+})
+
 const patchProjectBodySchema = z.object({
   id: z.string().refine((id) => ObjectId.isValid(id)),
   name: z.string().optional(),
@@ -30,11 +39,8 @@ const patchProjectBodySchema = z.object({
   coManager: z.string().optional(),
 })
 
-export const patchProjectSchema = {
-  schema: {
-    body: patchProjectBodySchema,
-    response: {
-      200: z.string(),
-    },
-  },
-};
+export const patchProjectSchema = getPatchSchema(patchProjectBodySchema)
+
+const cancelProjectBodySchema = z.string().refine((id) => ObjectId.isValid(id))
+
+export const cancelProjectSchema = getPatchSchema(cancelProjectBodySchema)
